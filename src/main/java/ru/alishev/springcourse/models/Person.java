@@ -1,15 +1,18 @@
 package ru.alishev.springcourse.models;
 
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-/**
- * @author Neil Alishev
- */
+
+@Entity
+@Table(name="person")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
@@ -27,8 +30,7 @@ public class Person {
 
     }
 
-    public Person(int id, String name, int age, String email) {
-        this.id = id;
+    public Person(String name, int age, String email) {
         this.name = name;
         this.age = age;
         this.email = email;
